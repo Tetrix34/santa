@@ -43,10 +43,9 @@
           color: rgb(230, 223, 223);
           background: #090909;
           margin-top: 20px;
-          cursor: pointer;
-        }
-        button:hover {
-          background: #090909c3;
+          &:hover {
+            background: #090909c3;
+          }
         }
       }
       .letras {
@@ -58,7 +57,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
+        align-items: center; 
         height: 100vh;
         text-align: center;
         span {
@@ -88,16 +87,12 @@
         { palabras: ["Diciembre"], tiempo: 5000, esUltimo: true },
       ];
 
-      // Agregar el evento de clic y asegurar reproducción de audio
       btn.addEventListener("click", () => {
         section1.classList.add("desactivado");
         section2.classList.remove("desactivado");
 
-        audio.currentTime = 0; // Reiniciar el audio
-        audio.play().catch(err => {
-          console.error("No se puede reproducir el audio en este dispositivo:", err);
-        });
-
+        audio.volume = 1.0;
+        audio.play();
         mostrarLetras(letrasConfig);
       });
 
@@ -118,10 +113,11 @@
                 pLetras.innerHTML = "";
                 const gif = document.createElement("img");
                 const span = document.createElement("span");
+                const span2 = document.createElement("span");
                 const saltoDeLinea = document.createElement("br");
 
-                span.innerHTML = "FELIZ CASI <br />🎄 NAVIDAD 🎄";
-                gif.src = "https://example.com/path-to-your-gif.gif"; // Cambia esta URL al GIF correcto
+                span.innerHTML = "FELIZ CASI <br />🎄 NAVIDAD CHIKITA🎄";
+                gif.src = "./santa.gif";
                 pLetras.appendChild(span);
                 pLetras.appendChild(saltoDeLinea);
                 pLetras.appendChild(gif);
@@ -145,7 +141,7 @@
   <body>
     <div class="section1" id="s1">
       <h1>
-        <span class="span-1">Hey</span><br />
+        <span class="span-1">Hey Chikibaby</span><br />
         <span class="span-2">tengo que</span><br />
         <span class="span-3">contarte</span><br />
         <span class="span-4">que...</span><br />
@@ -156,7 +152,7 @@
       <audio
         id="myAudio"
         src="./haudio.mp3"
-        preload="none" <!-- Ajuste del preload para móviles -->
+        preload="auto"
         class="desactivado"
       ></audio>
       <p class="letras" id="pLetras">Hola</p>
